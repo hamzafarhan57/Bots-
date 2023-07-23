@@ -1,0 +1,32 @@
+import requests
+import time
+
+def get_sneakers(product_code):
+  """Gets sneakers from a website.
+
+  Args:
+    product_code: The code of the sneakers to get.
+
+  Returns:
+    The URL of the sneakers.
+  """
+
+  url = "https://www.nike.com/us/en_us/product/" + product_code
+  response = requests.get(url)
+  if response.status_code == 200:
+    return url
+  else:
+    return None
+
+def main():
+  """Runs the bot."""
+
+  product_code = "DA3130-100"
+  url = get_sneakers(product_code)
+  if url is not None:
+    print("Found sneakers at", url)
+  else:
+    print("No sneakers found.")
+
+if __name__ == "__main__":
+  main()
